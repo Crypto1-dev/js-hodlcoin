@@ -1,3 +1,4 @@
+```javascript
 class HodlCoin {
     constructor() {
         this.balances = new Map();
@@ -55,5 +56,34 @@ class HodlCoin {
     }
 }
 
-// Export for Node.js
+// Test code to run when file is executed directly
+if (require.main === module) {
+    const hodl = new HodlCoin();
+
+    try {
+        // Check initial genesis balance
+        console.log('Genesis balance:', hodl.getBalance('genesis')); // Should show 1000000
+
+        // Transfer 1000 coins from genesis to user1
+        hodl.transfer('genesis', 'user1', 1000);
+        console.log('User1 balance:', hodl.getBalance('user1')); // Should show 1000
+        console.log('Genesis balance:', hodl.getBalance('genesis')); // Should show 999000
+
+        // Mint 500 coins to user2
+        hodl.mint('user2', 500);
+        console.log('User2 balance:', hodl.getBalance('user2')); // Should show 500
+        console.log('Total supply:', hodl.totalSupply); // Should show 1000500
+
+        // Burn 200 coins from user1
+        hodl.burn('user1', 200);
+        console.log('User1 balance:', hodl.getBalance('user1')); // Should show 800
+        console.log('Total supply:', hodl.totalSupply); // Should show 1000300
+
+        // Try an invalid transfer (should fail)
+        hodl.transfer('user1', 'user2', 1000); // Should throw error
+    } catch (error) {
+        console.error('Error:', error.message);
+    }
+}
+
 module.exports = HodlCoin;
