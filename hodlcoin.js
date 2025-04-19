@@ -55,35 +55,5 @@ class HodlCoin {
     }
 }
 
-// Example usage for testing
-function testHodlCoin() {
-    const hodl = new HodlCoin();
-    
-    try {
-        // Test initial balance
-        console.log('Genesis balance:', hodl.getBalance('genesis')); // 1000000
-        
-        // Test transfer
-        hodl.transfer('genesis', 'alice', 1000);
-        console.log('Alice balance:', hodl.getBalance('alice')); // 1000
-        console.log('Genesis balance:', hodl.getBalance('genesis')); // 999000
-        
-        // Test mint
-        hodl.mint('bob', 500);
-        console.log('Bob balance:', hodl.getBalance('bob')); // 500
-        console.log('Total supply:', hodl.totalSupply); // 1000500
-        
-        // Test burn
-        hodl.burn('alice', 200);
-        console.log('Alice balance:', hodl.getBalance('alice')); // 800
-        console.log('Total supply:', hodl.totalSupply); // 1000300
-        
-        // Test invalid transfer
-        hodl.transfer('alice', 'bob', 1000); // Should throw error
-    } catch (error) {
-        console.error('Error:', error.message);
-    }
-}
-
-// Run tests
-testHodlCoin();
+// Export for Node.js
+module.exports = HodlCoin;
