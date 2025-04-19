@@ -1,7 +1,7 @@
 run the following commands after downloading github
 (make sure node is installed):
 
-node hodlcoin.js
+node <YOUR-PATH-TO-HODLCOIN>.js
 
 and thatvisit site
 
